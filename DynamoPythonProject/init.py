@@ -1,4 +1,3 @@
-
 #OV DynamoPythonProject
 
 #Import Common Language Runtime CLR
@@ -16,6 +15,8 @@ from RevitServices.Transactions import TransactionManager
 doc = DocumentManager.Instance.CurrentDBDocument
 
 #Dynamo Inputs
+input = IN[0]
+inputU = UnwrapElement(IN[0])
 
 #Start a Transaction
 TransactionManager.Instance.EnsureInTransaction(doc)
