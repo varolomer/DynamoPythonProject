@@ -1,15 +1,27 @@
 #OV DynamoPythonProject
 
-#Import Common Language Runtime CLR
+#Import Common Language Runtime CLR and System
 import clr
+import sys
 
-#Add and Import RevitServices Reference
-clr.AddReference("RevitServices")
-import RevitServices
+#Add References
+clr.AddReference('RevitServices')
+clr.AddReference('ProtoGeometry')
+clr.AddReference('RevitNodes')
+clr.AddReference('RevitAPI')
+
+#Import Libraries
+import Revit #Nodes in Dynamo
+import Autodesk.Designscript.Geometry as Geometry #Import Dynamo Geometry Library to interact wit Revit
+import Autodesk.Revit.DB as DB #Import DB for direct RevitAPI calls. This requires unwrapping and wrapping
 
 #Import DocumentManager and TransactionManager
 from RevitServices.Persistence import DocumentManager
 from RevitServices.Transactions import TransactionManager
+
+#Import DSType Method and DYN-Revit Conversion Methods
+clr.ImportExtensions(Revit.Elements)
+clr.ImportExtensions(Revit.GeometryConversion)
 
 #Get the current Revit Document
 doc = DocumentManager.Instance.CurrentDBDocument
