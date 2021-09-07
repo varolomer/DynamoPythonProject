@@ -5,7 +5,7 @@ import clr
 import sys
 
 #Append Custom Library
-#sys.path.append(r'path')
+sys.path.append(r'C:\Users\omer_\OneDrive\Yazılım - Dynamo\00_DPP_DynamoPythonProject\DynamoPythonProject\DynamoPythonProject')
 
 #Add References
 clr.AddReference('RevitServices')
