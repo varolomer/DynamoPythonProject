@@ -16,7 +16,7 @@ clr.AddReference('RevitAPI')
 #Import Libraries
 import Revit #Nodes in Dynamo
 import Autodesk.DesignScript.Geometry as Geometry #Import Dynamo Geometry Library to interact wit Revit
-import Autodesk.Revit.DB as DB #Import DB for direct RevitAPI calls. This requires unwrapping and wrapping
+import Autodesk.Revit.DB as DB #Import DB for direct RevitAPI calls. This requires unwrapping.
 
 #Import DocumentManager and TransactionManager
 from RevitServices.Persistence import DocumentManager
@@ -31,7 +31,7 @@ doc = DocumentManager.Instance.CurrentDBDocument
 
 #############################################Dynamo Inputs
 input = IN[0]
-inputU = UnwrapElement(IN[0])
+#inputU = UnwrapElement(IN[0])
 #############################################
 #Start a Transaction
 TransactionManager.Instance.EnsureInTransaction(doc)

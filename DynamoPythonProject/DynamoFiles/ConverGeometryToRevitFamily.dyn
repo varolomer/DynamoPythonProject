@@ -1,0 +1,456 @@
+{
+  "Uuid": "b90ba50f-a1b4-4d7b-9cde-929173307b60",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "00_ConverToRevitFamily",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "ecdb3729-0de2-4c50-bdca-28fe881027a2",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "0548e2c6df2644579c00791bf7948843",
+      "Inputs": [
+        {
+          "Id": "61286f86ee3a4ba1b22f21369714b6e5",
+          "Name": "geometry",
+          "Description": "var[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "67e71e0e4c7c42118fa3991dae332cdb",
+          "Name": "familyTemplatePath",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e2f4b925c23a43c39bb89da8357c8adb",
+          "Name": "familyName",
+          "Description": "var[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4001412825d34ef7b0821d6fe266d9db",
+          "Name": "category",
+          "Description": "var[]\nDefault value : Revit.Elements.Category.ByName(\"OST_GenericModel\")",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b14079f3cfdd47d7a90afcc3e6f0f528",
+          "Name": "materialName",
+          "Description": "var[]\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ec1f5ac403c546d6bf0a8ab5571f7e41",
+          "Name": "isVoid",
+          "Description": "var[]\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "00bda4a56ea84467b96b5f09a9a5cb21",
+          "Name": "subcategoryName",
+          "Description": "var[]\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1547d1c1523f43698266cf30cf7b676a",
+          "Name": "instance",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6af68be5f2d94339a942222f9cb666ef",
+          "Name": "family",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "You must provide a valid family template path that will be used for all input geometry objects. The project units(and not the templates) will be used to determine the size of the output geometry.\r\nThe provided category will be used only if the family template supports it. If not, the default template category will be used instead.\r\nLikewise, the family material(provided as a string) will be set only if a material with that name exists in the template. If not, the default material will be used instead (\"By Category\").\r\nFor void cuts, the material settings will be ignored.\r\nThe Subcategory name is an optional input. If you'd like to skip assigning a Subcategory to any new instance, simply use null.\r\nThe node expects a unique family name for each geometry object. The rest of the input lists will be processed as if the node lacing is set to longest."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Geometry.ImportFromSAT@var",
+      "Id": "68ec2d37f36b4959bea34bdb5ee3d97b",
+      "Inputs": [
+        {
+          "Id": "51e52f1f565044d9bd0563203294606f",
+          "Name": "file",
+          "Description": "File object representing the SAT file\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7cb6998580394ba58e293e95acce7142",
+          "Name": "Geometry[]..[]",
+          "Description": "List of imported geometries",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Imports a SAT file and returns an array of imported geometries\n\nGeometry.ImportFromSAT (file: var): Geometry[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "HintPath": "C:\\Users\\omer_\\Desktop\\ThinkParametric\\Basic Interoperability Rhino & Revit_Assets\\00_MyFiles\\Boxes.sat",
+      "InputValue": "C:\\Users\\omer_\\Desktop\\ThinkParametric\\Basic Interoperability Rhino & Revit_Assets\\00_MyFiles\\Boxes.sat",
+      "NodeType": "ExtensionNode",
+      "Id": "dc8343e8246b4164a6ab2c46d5547bcc",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "38f1a6ceaa044bb8bae096228f358831",
+          "Name": "",
+          "Description": "Filename",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system to get its filename"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.FileObject, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "5573090ba0be44abab9d51f263d7b346",
+      "Inputs": [
+        {
+          "Id": "28e1bbb716a04813986eef1c3e85294f",
+          "Name": "path",
+          "Description": "Path to the file.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3a9f7df391e34b7baaf5961d0cf4683e",
+          "Name": "file",
+          "Description": "File object",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a file object from a path."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "2eb60ce7-b5ce-4cb4-891c-1bfaf088b4ea",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "6ab1573c5c474e13bed9d52b092e4f67",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2a0b4d6b5b9b4db4a7ee0531f0167cbc",
+          "Name": "FamilyTemplateFolder",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "30dc0db6fe1340e2869af0fc14a481fc",
+          "Name": "GenericModelTemplate",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e573237e9f3e40a596dd61e89a6f32cc",
+          "Name": "MassFamilyTemplate",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Fetches the default family template paths"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[\"Solid1\", \"Solid2\"];",
+      "Id": "fa12fcb883404150a7f83610620192e8",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "588096606b534b89a04de38943f1e8f6",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 231,
+      "SelectedString": "OST_GenericModel",
+      "NodeType": "ExtensionNode",
+      "Id": "44038f5b35f94a14b3309a4b9b884ee2",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "21505c33571d403280310a0ea3f3ff70",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "7cb6998580394ba58e293e95acce7142",
+      "End": "61286f86ee3a4ba1b22f21369714b6e5",
+      "Id": "0e6fe87bd90e42058e400d768577ff0b"
+    },
+    {
+      "Start": "38f1a6ceaa044bb8bae096228f358831",
+      "End": "28e1bbb716a04813986eef1c3e85294f",
+      "Id": "c4cc7d2e98e54745b0844eb3274322fe"
+    },
+    {
+      "Start": "3a9f7df391e34b7baaf5961d0cf4683e",
+      "End": "51e52f1f565044d9bd0563203294606f",
+      "Id": "c899b2287cf84490ac5d691853418088"
+    },
+    {
+      "Start": "30dc0db6fe1340e2869af0fc14a481fc",
+      "End": "67e71e0e4c7c42118fa3991dae332cdb",
+      "Id": "362425b89cf04e85847dc3897d0a0faa"
+    },
+    {
+      "Start": "588096606b534b89a04de38943f1e8f6",
+      "End": "e2f4b925c23a43c39bb89da8357c8adb",
+      "Id": "e835d831603b464fb1c6d8bac34676c0"
+    },
+    {
+      "Start": "21505c33571d403280310a0ea3f3ff70",
+      "End": "4001412825d34ef7b0821d6fe266d9db",
+      "Id": "a6dfeba30b4c44668297f74927c4d974"
+    }
+  ],
+  "Dependencies": [
+    "ecdb3729-0de2-4c50-bdca-28fe881027a2",
+    "2eb60ce7-b5ce-4cb4-891c-1bfaf088b4ea"
+  ],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "spring nodes",
+      "Version": "204.1.0",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "0548e2c6df2644579c00791bf7948843",
+        "6ab1573c5c474e13bed9d52b092e4f67"
+      ]
+    }
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.0.5885",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": 10.645124931554042,
+      "EyeY": 18.400232471079814,
+      "EyeZ": 13.547378266544651,
+      "LookX": -16.816308811076,
+      "LookY": -14.171296465872508,
+      "LookZ": -11.423791039276448,
+      "UpX": -0.31654993783266105,
+      "UpY": 0.92387953251128674,
+      "UpZ": -0.21504126642313279
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "ꟿ FamilyInstance.ByGeometry",
+        "Id": "0548e2c6df2644579c00791bf7948843",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -195.65585809086951,
+        "Y": 406.711280450275
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Geometry.ImportFromSAT",
+        "Id": "68ec2d37f36b4959bea34bdb5ee3d97b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -734.71397796474889,
+        "Y": 225.0734340515902
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "File Path",
+        "Id": "dc8343e8246b4164a6ab2c46d5547bcc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -1309.0102754080967,
+        "Y": 224.89909198532052
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "File From Path",
+        "Id": "5573090ba0be44abab9d51f263d7b346",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -871.31405079094316,
+        "Y": 227.05950710301613
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ꟿ FamilyTemplatePaths.CommonPaths",
+        "Id": "6ab1573c5c474e13bed9d52b092e4f67",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -758.48822148575607,
+        "Y": 336.76448167913372
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "fa12fcb883404150a7f83610620192e8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -720.2264704207505,
+        "Y": 548.66803614793116
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Categories",
+        "Id": "44038f5b35f94a14b3309a4b9b884ee2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -713.29665401594639,
+        "Y": 659.54661522239746
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "2f6b85205de04f868909ea2c6597e14a",
+        "Title": "Springs Nodes package",
+        "Nodes": [],
+        "Left": -117.64173852107763,
+        "Top": 356.83790150470765,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "9a7c7204aa274439b10f5e7942cbcc79",
+        "Title": "The script converts all the sat solids to individual families. If multiple geometries are desired to be a single family the geometry should be joined.",
+        "Nodes": [],
+        "Left": -1214.4432681510411,
+        "Top": 141.47333008665271,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "d195ff52c9114b508357fd3f746244c8",
+        "Title": "There should be a family name for each \r\ngeometry to be converted.",
+        "Nodes": [],
+        "Left": -734.20517784655158,
+        "Top": 495.33536164596205,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 1353.358946737028,
+    "Y": -39.192711539814468,
+    "Zoom": 0.971826874798003
+  }
+}
